@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_BDEF" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <BDEF>
+    <METADATA>
+     <NAME>ZCON_I_VCSOI</NAME>
+     <TYPE>BDEF/BDO</TYPE>
+     <VERSION>active</VERSION>
+     <DESCRIPTION>Behavior for ZCON_I_VCSOI</DESCRIPTION>
+     <DESCRIPTION_TEXT_LIMIT>60</DESCRIPTION_TEXT_LIMIT>
+     <SOURCE_FIXED_POINT_ARITHMETIC>true</SOURCE_FIXED_POINT_ARITHMETIC>
+     <SOURCE_UNICODE_CHECKS_ACTIVE>true</SOURCE_UNICODE_CHECKS_ACTIVE>
+     <SYNTAX_CONFIGURATION>
+      <LANGUAGE>
+       <UNICODE_CHECK_ACTIVE>true</UNICODE_CHECK_ACTIVE>
+       <VERSION>X</VERSION>
+       <DESCRIPTION>Standard-ABAP (Unicode)</DESCRIPTION>
+       <LINKS>
+        <item>
+         <COMMON_ATTRIBUTES>
+          <UNDEFINED_ATTRIBUTES>
+           <item>
+            <NAME>etag</NAME>
+            <TEXT>754</TEXT>
+           </item>
+          </UNDEFINED_ATTRIBUTES>
+         </COMMON_ATTRIBUTES>
+         <HREF>/sap/bc/adt/abapsource/parsers/rnd/grammar</HREF>
+         <REL>http://www.sap.com/adt/relations/abapsource/parser</REL>
+         <TYPE>text/plain</TYPE>
+         <TITLE>Standard-ABAP (Unicode)</TITLE>
+        </item>
+       </LINKS>
+      </LANGUAGE>
+     </SYNTAX_CONFIGURATION>
+    </METADATA>
+   </BDEF>
+  </asx:values>
+ </asx:abap>
+</abapGit>

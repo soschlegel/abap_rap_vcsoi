@@ -1,0 +1,10 @@
+unmanaged implementation in class zbp_con_i_vcsoi unique;
+
+define behavior for ZCON_I_VcSoI alias Item
+//late numbering
+//lock master
+//authorization master
+//etag <field_name>
+{
+    action set_scheduleline_category result[1] $self;
+}

@@ -1,0 +1,4 @@
+@EndUserText.label: 'Serv.Def. für Kundenauftragsposition'
+define service ZCON_SD_VCSOI {
+  expose ZCON_I_VcSoI as SOItem;
+}
