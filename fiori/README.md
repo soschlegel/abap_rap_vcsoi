@@ -34,9 +34,15 @@ A Fiori application.
     npm run start-mock
 ```
 
-
 #### Pre-requisites:
 
 1. Active NodeJS LTS (Long Term Support) version and associated supported NPM version.  (See https://nodejs.org)
 
+### Deployment
 
+Add a file `.env` into the root folder fiori with following content:
+
+```yaml
+UI5_USERNAME=<YOUR_USER>
+UI5_PASSWORD=<YOUR_PASSWORD>
+```
