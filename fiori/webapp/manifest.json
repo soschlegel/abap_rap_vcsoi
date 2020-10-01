@@ -20,8 +20,8 @@
                 "type": "OData",
                 "settings": {
                     "annotations": [
-                        "ZCON_SB_VCSOI_VAN",
-                        "annotation"
+                        "annotation",
+                        "ZCON_SB_VCSOI_VAN"
                     ],
                     "localUri": "localService/metadata.xml"
                 }
@@ -135,7 +135,7 @@
                         "multiSelect": false,
                         "variantManagementHidden": true,
                         "smartVariantManagement": false,
-                        "isWorklist": true
+                        "isWorklist": false
                     }
                 },
                 "pages": {
