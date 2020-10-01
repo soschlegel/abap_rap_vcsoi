@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="../../../sap/zcon_sb_vcsoi/$metadata">
+        <edmx:Include Namespace="ZCON_SB_VCSOI" Alias="SAP"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="zcon_sb_vcsoi_van.v1" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <Annotations Target="cds_zcon_sd_vcsoi.ScheduleLineType/SalesOrder">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="cds_zcon_sd_vcsoi.ScheduleLineType/SalesOrderItem">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="cds_zcon_sd_vcsoi.ScheduleLineType/ScheduleLine">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="cds_zcon_sd_vcsoi.ScheduleLineType/DeliveryBlockCriticality">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="cds_zcon_sd_vcsoi.ScheduleLineType">
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="DeliveryDate"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="ConfdOrderQtyByMatlAvailCheck"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="DeliveredQtyInOrderQtyUnit"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="OpenConfdDelivQtyInOrdQtyUnit"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Low"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Criticality" Path="DeliveryBlockCriticality"/>
+                            <PropertyValue Property="Value" Path="DelivBlockReasonForSchedLine"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.PresentationVariant">
+                    <Record>
+                        <PropertyValue Property="SortOrder">
+                            <Collection>
+                                <Record Type="Common.SortOrderType">
+                                    <PropertyValue Property="Property" PropertyPath="DeliveryDate"/>
+                                    <PropertyValue Property="Descending" Bool="false"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zcon_sd_vcsoi.SalesOrderItemType">
+                <Annotation Term="UI.Facets">
+                    <Collection>
+                        <Record Type="UI.CollectionFacet">
+                            <PropertyValue Property="Label" String="Kundenauftragsposition"/>
+                            <PropertyValue Property="ID" String="idCollection"/>
+                            <PropertyValue Property="Facets">
+                                <Collection>
+                                    <Record Type="UI.ReferenceFacet">
+                                        <PropertyValue Property="Label" String="Allgemeine Informationen"/>
+                                        <PropertyValue Property="ID" String="idIdentification"/>
+                                        <PropertyValue Property="Target" AnnotationPath="@UI.Identification"/>
+                                    </Record>
+                                </Collection>
+                            </PropertyValue>
+                        </Record>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="Einteilungen"/>
+                            <PropertyValue Property="ID" String="ScheduleLines"/>
+                            <PropertyValue Property="Target" AnnotationPath="to_ScheduleLine/@UI.LineItem"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.HeaderInfo">
+                    <Record>
+                        <PropertyValue Property="TypeName" String="Offene Position"/>
+                        <PropertyValue Property="TypeNamePlural" String="Offene Positionen"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.Identification">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Kundenauftrag"/>
+                            <PropertyValue Property="Value" Path="SalesOrder"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Position"/>
+                            <PropertyValue Property="Value" Path="SalesOrderItem"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Material"/>
+                            <PropertyValue Property="Value" Path="Material"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="SalesOrder"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Position"/>
+                            <PropertyValue Property="Value" Path="SalesOrderItem"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Material"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Status"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CPLinesCount"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="LinesCount"/>
+                        </Record>
+                        <Record Type="UI.DataFieldForAction">
+                            <PropertyValue Property="Label" String="Freigeben"/>
+                            <PropertyValue Property="Action" String="cds_zcon_sd_vcsoi.cds_zcon_sd_vcsoi_Entities/set_scheduleline_category"/>
+                            <PropertyValue Property="InvocationGrouping" EnumMember="UI.OperationGroupingType/Isolated"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

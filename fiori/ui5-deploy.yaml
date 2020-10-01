@@ -1,0 +1,22 @@
+specVersion: '1.0'
+metadata:
+  name: 'vako'
+type: application
+ui5Theme: sap_fiori_3
+builder:
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          url: https://saprs4.cnsint.de:8100
+          client: 100
+          auth: basic
+        app:
+          name: ZVAKO
+          package: $VAKO
+          transport: RS4K901150
+        index: true
+        credentials:
+          username: env:UI5_USERNAME
+          password: env:UI5_PASSWORD

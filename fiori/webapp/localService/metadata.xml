@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="https://sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="cds_zcon_sd_vcsoi" xml:lang="de" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="ScheduleLineType" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="SalesOrder"/>
+                    <PropertyRef Name="SalesOrderItem"/>
+                    <PropertyRef Name="ScheduleLine"/>
+                </Key>
+                <Property Name="SalesOrder" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Verkaufsbeleg"/>
+                <Property Name="SalesOrderItem" Type="Edm.String" Nullable="false" MaxLength="6" sap:display-format="NonNegative" sap:label="Position" sap:quickinfo="Verkaufsbelegposition"/>
+                <Property Name="ScheduleLine" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="NonNegative" sap:label="Einteilungsnummer"/>
+                <Property Name="DeliveryDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Liefertermin"/>
+                <Property Name="OrderQuantityUnit" Type="Edm.String" MaxLength="3" sap:label="Verkaufsmengeneinh." sap:quickinfo="Verkaufsmengeneinheit" sap:semantics="unit-of-measure"/>
+                <Property Name="ConfdOrderQtyByMatlAvailCheck" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="OrderQuantityUnit" sap:label="Bestätigte Menge"/>
+                <Property Name="DeliveredQtyInOrderQtyUnit" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="OrderQuantityUnit" sap:label="Gelieferte Menge"/>
+                <Property Name="OpenConfdDelivQtyInOrdQtyUnit" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="OrderQuantityUnit" sap:label="Offene Menge" sap:quickinfo="Offene bestätigte Liefermenge"/>
+                <Property Name="DeliveryBlockCriticality" Type="Edm.Byte"/>
+                <Property Name="DelivBlockReasonForSchedLine" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Liefersperre" sap:quickinfo="Einteilung gesperrt für Lieferung"/>
+            </EntityType>
+            <EntityType Name="I_MaterialStdVHType" sap:label="Material" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Material"/>
+                </Key>
+                <Property Name="Material" Type="Edm.String" Nullable="false" MaxLength="18" sap:display-format="UpperCase" sap:text="Material_Text" sap:label="Material" sap:quickinfo="Materialnummer"/>
+                <Property Name="Material_Text" Type="Edm.String" MaxLength="40" sap:label="Materialkurztext" sap:creatable="false" sap:updatable="false"/>
+            </EntityType>
+            <EntityType Name="SalesOrderItemType" sap:label="Vertriebssbelegposition VAKO" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="SalesOrder"/>
+                    <PropertyRef Name="SalesOrderItem"/>
+                </Key>
+                <Property Name="SalesOrder" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Kundenauftrag"/>
+                <Property Name="SalesOrderItem" Type="Edm.String" Nullable="false" MaxLength="6" sap:display-format="NonNegative" sap:label="Position" sap:quickinfo="Kundenauftragsposition"/>
+                <Property Name="Material" Type="Edm.String" MaxLength="18" sap:display-format="UpperCase" sap:label="Material" sap:quickinfo="Materialnummer" sap:value-list="standard"/>
+                <Property Name="Status" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Gesamtstatus" sap:quickinfo="Gesamtbearbeitungsstatus (Position)"/>
+                <Property Name="CPLinesCount" Type="Edm.Byte"/>
+                <Property Name="LinesCount" Type="Edm.Int32"/>
+                <NavigationProperty Name="to_ScheduleLine" Relationship="cds_zcon_sd_vcsoi.assoc_3464EE1A4800AC4B67F9BD41E7DF8357" FromRole="FromRole_assoc_3464EE1A4800AC4B67F9BD41E7DF8357" ToRole="ToRole_assoc_3464EE1A4800AC4B67F9BD41E7DF8357"/>
+            </EntityType>
+            <Association Name="assoc_3464EE1A4800AC4B67F9BD41E7DF8357" sap:content-version="1">
+                <End Type="cds_zcon_sd_vcsoi.SalesOrderItemType" Multiplicity="1" Role="FromRole_assoc_3464EE1A4800AC4B67F9BD41E7DF8357"/>
+                <End Type="cds_zcon_sd_vcsoi.ScheduleLineType" Multiplicity="*" Role="ToRole_assoc_3464EE1A4800AC4B67F9BD41E7DF8357"/>
+            </Association>
+            <EntityContainer Name="cds_zcon_sd_vcsoi_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="ScheduleLine" EntityType="cds_zcon_sd_vcsoi.ScheduleLineType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="I_MaterialStdVH" EntityType="cds_zcon_sd_vcsoi.I_MaterialStdVHType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="SalesOrderItem" EntityType="cds_zcon_sd_vcsoi.SalesOrderItemType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <AssociationSet Name="assoc_3464EE1A4800AC4B67F9BD41E7DF8357" Association="cds_zcon_sd_vcsoi.assoc_3464EE1A4800AC4B67F9BD41E7DF8357" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="SalesOrderItem" Role="FromRole_assoc_3464EE1A4800AC4B67F9BD41E7DF8357"/>
+                    <End EntitySet="ScheduleLine" Role="ToRole_assoc_3464EE1A4800AC4B67F9BD41E7DF8357"/>
+                </AssociationSet>
+                <FunctionImport Name="set_scheduleline_category" ReturnType="cds_zcon_sd_vcsoi.SalesOrderItemType" EntitySet="SalesOrderItem" m:HttpMethod="POST" sap:action-for="cds_zcon_sd_vcsoi.SalesOrderItemType">
+                    <Parameter Name="SalesOrder" Type="Edm.String" Mode="In" MaxLength="10"/>
+                    <Parameter Name="SalesOrderItem" Type="Edm.String" Mode="In" MaxLength="6"/>
+                </FunctionImport>
+            </EntityContainer>
+            <Annotations Target="cds_zcon_sd_vcsoi.SalesOrderItemType/Material" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Material"/>
+                        <PropertyValue Property="CollectionPath" String="I_MaterialStdVH"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Material"/>
+                                    <PropertyValue Property="ValueListProperty" String="Material"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="Material_Text"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zcon_sd_vcsoi.cds_zcon_sd_vcsoi_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Aggregation.ApplySupported">
+                    <Record>
+                        <PropertyValue Property="Transformations">
+                            <Collection>
+                                <String>aggregate</String>
+                                <String>groupby</String>
+                                <String>filter</String>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Rollup" EnumMember="None"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zcon_sd_vcsoi.ScheduleLineType" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.SemanticKey">
+                    <Collection>
+                        <PropertyPath>ScheduleLine</PropertyPath>
+                        <PropertyPath>SalesOrderItem</PropertyPath>
+                        <PropertyPath>SalesOrder</PropertyPath>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <atom:link rel="self" href="https://saprs4.cnsint.de:8100/sap/opu/odata/sap/ZCON_SB_VCSOI/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="https://saprs4.cnsint.de:8100/sap/opu/odata/sap/ZCON_SB_VCSOI/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
