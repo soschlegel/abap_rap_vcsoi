@@ -132,7 +132,7 @@
                         </Record>
                         <Record Type="UI.DataFieldForAction">
                             <PropertyValue Property="Label" String="Freigeben"/>
-                            <PropertyValue Property="Action" String="cds_zcon_sd_vcsoi.cds_zcon_sd_vcsoi_Entities/set_scheduleline_category"/>
+                            <PropertyValue Property="Action" String="cds_zcon_sd_vcsoi.cds_zcon_sd_vcsoi_Entities/release_sales_order_item"/>
                             <PropertyValue Property="InvocationGrouping" EnumMember="UI.OperationGroupingType/Isolated"/>
                         </Record>
                     </Collection>
