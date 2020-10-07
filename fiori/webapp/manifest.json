@@ -132,7 +132,7 @@
                     "name": "sap.suite.ui.generic.template.ListReport",
                     "list": true,
                     "settings": {
-                        "multiSelect": false,
+                        "multiSelect": true,
                         "variantManagementHidden": true,
                         "smartVariantManagement": false,
                         "isWorklist": false
